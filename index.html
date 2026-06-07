@@ -1,0 +1,611 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>الكرسي المرقسي الرسولي</title>
+
+    <!-- Bootstrap RTL CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.rtl.min.css">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+    <!-- Google Fonts: Amiri (Arabic serif) + Cinzel for decorative Latin -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Cinzel:wght@400;600;900&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .modal-source-section {
+            margin-top: 0.5rem;
+            padding: 0.75rem 1rem;
+            background: rgba(201,168,76,0.08);
+            border-radius: 8px;
+            border: 1px solid rgba(201,168,76,0.25);
+        }
+        .modal-source-text {
+            font-family: var(--font-arabic);
+            font-size: 0.82rem;
+            color: var(--muted);
+            line-height: 1.6;
+            margin: 0;
+        }
+        .modal-source-text i {
+            color: var(--gold-dark);
+            margin-left: 5px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+
+        <!-- Navbar -->
+        <nav class="navbar navbar-expand-lg fixed-top navbar-scroll" id="mainNav">
+            <div class="container-fluid px-4">
+
+                <a class="navbar-brand" href="#!">الكرسي المرقسي الرسولي</a>
+
+                <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                    <i class="fas fa-bars"></i>
+                </button>
+
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                        <li class="nav-item"><a class="nav-link" href="#!">الرئيسية</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#!">العقيدة</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#popes-section">الباطركة</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#!">الكنيسة</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#!">اتصل بنا</a></li>
+                    </ul>
+
+                    <!-- Search Bar -->
+                    <div class="navbar-search-wrapper ms-3">
+                        <form class="d-flex" role="search" onsubmit="searchPope(event)">
+                            <div class="search-input-group">
+                                <i class="fas fa-search search-icon"></i>
+                                <input
+                                    class="navbar-search-input"
+                                    type="search"
+                                    id="popeSearch"
+                                    placeholder="ابحث عن بطريرك..."
+                                    autocomplete="off"
+                                />
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+            </div>
+        </nav>
+
+        <!-- Hero: Two images side by side -->
+        <section id="intro">
+            <div class="hero-img">
+                <img src="image/pope_shenoda.jpg" alt="البابا شنودة" />
+                <div class="hero-overlay"></div>
+            </div>
+            <div class="hero-text">
+                <div class="hero-cross">✝</div>
+                <span id="typewriter"></span>
+                <span class="cursor">|</span>
+            </div>
+            <div class="hero-img">
+                <img src="image/san_marcos.jpg" alt="القديس مرقس" />
+                <div class="hero-overlay"></div>
+            </div>
+        </section>
+
+    </header>
+
+    <main>
+
+        <!-- Section divider -->
+        <div class="section-divider">
+            <div class="divider-ornament">
+                <span class="divider-line"></span>
+                <span class="divider-cross">✝</span>
+                <span class="divider-line"></span>
+            </div>
+        </div>
+
+        <!-- Popes Timeline Section -->
+        <section id="popes-section" class="popes-section">
+            <div class="popes-section-header">
+                <p class="popes-section-subtitle">من القديس مرقس الرسول حتى البابا شنودة الثالث</p>
+                <h2 class="popes-section-title">بطاركة الكرسي المرقسي</h2>
+                <p class="popes-section-desc">
+                    ١١٧ أباً بطريركاً قادوا الكنيسة القبطية الأرثوذكسية عبر عشرين قرناً من الإيمان والشهادة والعطاء
+                </p>
+            </div>
+
+            <!-- Filter Bar -->
+            <div class="filter-bar">
+                <div class="filter-inner">
+                    <span class="filter-label">تصفية:</span>
+                    <button class="filter-btn active" data-era="all">الكل</button>
+                    <button class="filter-btn" data-era="1">القرن الأول</button>
+                    <button class="filter-btn" data-era="2-5">القرون ٢–٥</button>
+                    <button class="filter-btn" data-era="6-10">القرون ٦–١٠</button>
+                    <button class="filter-btn" data-era="11-15">القرون ١١–١٥</button>
+                    <button class="filter-btn" data-era="16-20">القرون ١٦–٢٠</button>
+                </div>
+            </div>
+
+            <!-- Loading State -->
+            <div id="popes-loading" class="popes-loading">
+                <div class="loading-cross">✝</div>
+                <p>جارٍ تحميل بيانات البطاركة...</p>
+            </div>
+
+            <!-- Timeline Container -->
+            <div class="timeline-container" id="timeline-container" style="display:none;">
+                <div class="timeline-spine"></div>
+                <div id="timeline-items" class="timeline-items"></div>
+            </div>
+
+            <!-- Load More -->
+            <div id="load-more-wrap" class="load-more-wrap" style="display:none;">
+                <button id="load-more-btn" class="load-more-btn" onclick="loadMorePopes()">
+                    <i class="fas fa-chevron-down me-2"></i> عرض المزيد من البطاركة
+                </button>
+            </div>
+
+        </section>
+
+    </main>
+
+    <!-- Pope Detail Modal -->
+    <div id="pope-modal" class="pope-modal-backdrop" onclick="closeModal(event)">
+        <div class="pope-modal-box" id="pope-modal-box">
+            <button class="modal-close-btn" onclick="closePoperModal()">
+                <i class="fas fa-times"></i>
+            </button>
+            <div id="pope-modal-content"></div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Scroll toggle -->
+    <script>
+        const nav = document.getElementById('mainNav');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                nav.classList.add('navbar-scrolled');
+                nav.classList.remove('navbar-scroll');
+            } else {
+                nav.classList.remove('navbar-scrolled');
+                nav.classList.add('navbar-scroll');
+            }
+        });
+    </script>
+
+    <!-- Typewriter -->
+    <script>
+        const phrases = [
+            "مهرجان الكرازه المرقسية 2026",
+            "كنيسه السيده العذراء و الشهيد ماري جرجس بالسد العالي",
+            "بطاركه الكنيسة القبطيه الارثوذكسيه"
+        ];
+        const el = document.getElementById('typewriter');
+        const typeSpeed = 80, eraseSpeed = 40, pauseAfterType = 2000, pauseAfterErase = 400;
+        let phraseIndex = 0, charIndex = 0, isErasing = false;
+        function tick() {
+            const current = phrases[phraseIndex];
+            if (!isErasing) {
+                charIndex++;
+                el.textContent = current.substring(0, charIndex);
+                if (charIndex === current.length) { isErasing = true; setTimeout(tick, pauseAfterType); return; }
+                setTimeout(tick, typeSpeed);
+            } else {
+                charIndex--;
+                el.textContent = current.substring(0, charIndex);
+                if (charIndex === 0) { isErasing = false; phraseIndex = (phraseIndex + 1) % phrases.length; setTimeout(tick, pauseAfterErase); return; }
+                setTimeout(tick, eraseSpeed);
+            }
+        }
+        setTimeout(tick, 800);
+    </script>
+
+    <!-- Popes Data & Timeline Logic -->
+    <script>
+    // ── Static pope data – all 117 popes ──
+    // Format: [number, name_ar, enthrone_year, death_year, era_century]
+    const POPES_DATA = [
+        [1,  "القديس مرقس الرسول", "68م", "68م", 1],
+        [2,  "أنيانوس", "68م", "83م", 1],
+        [3,  "ميليوس", "83م", "95م", 1],
+        [4,  "كردينوس", "95م", "106م", 2],
+        [5,  "بريموس", "106م", "118م", 2],
+        [6,  "يوستس", "118م", "129م", 2],
+        [7,  "أومليانوس (إيميليانوس)", "129م", "141م", 2],
+        [8,  "مرقيانوس", "141م", "152م", 2],
+        [9,  "كلاوديانوس", "152م", "166م", 2],
+        [10, "أغريبينوس", "166م", "178م", 2],
+        [11, "يوليانوس", "178م", "188م", 2],
+        [12, "ديميتريوس الأول", "188م", "231م", 3],
+        [13, "هيراقلاس", "231م", "246م", 3],
+        [14, "ديونيسيوس الكبير", "246م", "264م", 3],
+        [15, "مكسيموس", "264م", "282م", 3],
+        [16, "ثيوناس", "282م", "300م", 4],
+        [17, "بطرس الأول (الختم)", "300م", "311م", 4],
+        [18, "أرخيلاوس", "312م", "312م", 4],
+        [19, "ألكسندروس الأول", "312م", "328م", 4],
+        [20, "أثناسيوس الأبوستليكوس (الرسولي)", "328م", "373م", 4],
+        [21, "بطرس الثاني", "373م", "380م", 4],
+        [22, "تيموثاوس الأول", "380م", "385م", 4],
+        [23, "ثيوفيلس", "385م", "412م", 5],
+        [24, "كيرلس الأول (عمود الدين)", "412م", "444م", 5],
+        [25, "ديسقوروس الأول", "444م", "454م", 5],
+        [26, "تيموثاوس الثاني (الكاطولوكيوس)", "457م", "477م", 5],
+        [27, "بطرس الثالث مونجوس", "477م", "489م", 5],
+        [28, "أثناسيوس الثاني", "489م", "496م", 5],
+        [29, "يوحنا الأول الهيموناليس", "496م", "505م", 6],
+        [30, "يوحنا الثاني النيقيوطي", "505م", "516م", 6],
+        [31, "ديسقوروس الثاني", "516م", "517م", 6],
+        [32, "تيموثاوس الثالث", "517م", "535م", 6],
+        [33, "ثيوذوسيوس الأول", "535م", "566م", 6],
+        [34, "بطرس الرابع", "567م", "569م", 6],
+        [35, "دميان (داميانوس)", "578م", "605م", 6],
+        [36, "أنسطاسيوس", "605م", "616م", 7],
+        [37, "أندرونيقوس", "616م", "622م", 7],
+        [38, "بنيامين الأول", "622م", "661م", 7],
+        [39, "أغاثون", "661م", "677م", 7],
+        [40, "يوحنا الثالث", "677م", "686م", 7],
+        [41, "إسحق", "686م", "689م", 7],
+        [42, "سيمون الأول", "689م", "701م", 8],
+        [43, "ألكسندروس الثاني", "702م", "729م", 8],
+        [44, "كوزما الأول", "729م", "730م", 8],
+        [45, "يوساب الأول (يوسف)", "730م", "749م", 8],
+        [46, "خائيل الأول", "749م", "767م", 8],
+        [47, "منى الأول", "767م", "776م", 8],
+        [48, "يوحنا الرابع", "776م", "799م", 8],
+        [49, "مرقس الثاني", "799م", "819م", 9],
+        [50, "يعقوب", "819م", "830م", 9],
+        [51, "سيمون الثاني", "830م", "830م", 9],
+        [52, "يوساب الثاني", "830م", "849م", 9],
+        [53, "خائيل الثاني", "849م", "851م", 9],
+        [54, "قزما الثاني", "851م", "858م", 9],
+        [55, "شنودة الأول", "859م", "880م", 9],
+        [56, "خائيل الثالث", "880م", "907م", 10],
+        [57, "غبريال الأول", "909م", "920م", 10],
+        [58, "قزما الثالث", "920م", "932م", 10],
+        [59, "مقاريوس الأول", "932م", "952م", 10],
+        [60, "ثيوفانيوس", "952م", "956م", 10],
+        [61, "منى الثاني", "956م", "974م", 10],
+        [62, "أبرام (إبراهيم) ابن زرعة", "975م", "978م", 10],
+        [63, "فيلوثاوس", "979م", "1003م", 11],
+        [64, "زكريا", "1004م", "1032م", 11],
+        [65, "شنودة الثاني", "1032م", "1046م", 11],
+        [66, "خريستوذولوس", "1047م", "1077م", 11],
+        [67, "كيرلس الثاني", "1078م", "1092م", 11],
+        [68, "ميخائيل الرابع (إبن قلاج)", "1092م", "1102م", 12],
+        [69, "مقاريوس الثاني", "1102م", "1128م", 12],
+        [70, "غبريال الثاني", "1131م", "1145م", 12],
+        [71, "ميخائيل الخامس", "1145م", "1146م", 12],
+        [72, "يوحنا الخامس", "1147م", "1166م", 12],
+        [73, "مرقس الثالث", "1167م", "1189م", 12],
+        [74, "يوحنا السادس", "1189م", "1216م", 13],
+        [75, "كيرلس الثالث ابن لقلق", "1235م", "1243م", 13],
+        [76, "أثناسيوس الثالث", "1250م", "1261م", 13],
+        [77, "غبريال الثالث", "1268م", "1271م", 13],
+        [78, "يوحنا السابع", "1271م", "1293م", 13],
+        [79, "ثيوذوسيوس الثاني", "1294م", "1300م", 14],
+        [80, "يوحنا الثامن", "1300م", "1320م", 14],
+        [81, "يوحنا التاسع", "1363م", "1369م", 14],
+        [82, "غبريال الرابع", "1370م", "1378م", 14],
+        [83, "متاوس الأول", "1378م", "1408م", 15],
+        [84, "غبريال الخامس", "1409م", "1427م", 15],
+        [85, "يوحنا العاشر", "1363م", "1363م", 14],
+        [86, "غبريال الخامس (ثانياً)", "1427م", "1438م", 15],
+        [87, "يوحنا الحادي عشر", "1363م", "1363م", 14],
+        [88, "متاوس الثاني", "1452م", "1465م", 15],
+        [89, "غبريال السادس", "1466م", "1474م", 15],
+        [90, "ميخائيل السادس", "1477م", "1478م", 15],
+        [91, "يوحنا الثاني عشر", "1479م", "1483م", 15],
+        [92, "يوحنا الثالث عشر", "1484م", "1524م", 16],
+        [93, "غبريال السابع", "1525م", "1569م", 16],
+        [94, "يوحنا الرابع عشر", "1571م", "1589م", 16],
+        [95, "غبريال الثامن", "1587م", "1603م", 17],
+        [96, "يوحنا الخامس عشر", "1619م", "1629م", 17],
+        [97, "متاوس الثالث", "1631م", "1646م", 17],
+        [98, "مرقس السادس", "1646م", "1656م", 17],
+        [99, "متاوس الرابع", "1660م", "1675م", 17],
+        [100,"يوحنا السادس عشر", "1676م", "1718م", 18],
+        [101,"بطرس السادس (الجاولي)", "1718م", "1726م", 18],
+        [102,"يوحنا السابع عشر", "1727م", "1745م", 18],
+        [103,"مرقس السابع", "1745م", "1769م", 18],
+        [104,"يوحنا الثامن عشر", "1769م", "1796م", 18],
+        [105,"مرقس الثامن", "1796م", "1809م", 19],
+        [106,"بطرس السابع (الجاولي)", "1809م", "1852م", 19],
+        [107,"كيرلس الرابع (أبو الإصلاح)", "1854م", "1861م", 19],
+        [108,"ديميتريوس الثاني", "1862م", "1870م", 19],
+        [109,"كيرلس الخامس", "1875م", "1927م", 20],
+        [110,"يوحنا التاسع عشر", "1928م", "1942م", 20],
+        [111,"مكاريوس الثالث", "1942م", "1945م", 20],
+        [112,"يوساب الثاني", "1946م", "1956م", 20],
+        [113,"كيرلس السادس", "1959م", "1971م", 20],
+        [114,"شنودة الثالث", "1971م", "2012م", 20],
+        [115,"تواضروس الثاني", "2012م", "الآن", 20],
+        // تواضروس الثاني هو البطريرك رقم 118 فعلياً
+    ];
+
+    // Extra detailed info per pope number (shown in expanded modal)
+    // المصادر: موقع الأنبا تكلاهيمانوت (st-takla.org)، موقع مشروع الكنوز القبطية (coptic-treasures.com)،
+    // موقع هيئة الاستعلامات المصرية (sis.gov.eg)، جريدة اليوم السابع، موقع الجزيرة نت
+    const POPE_DETAILS = {
+        1: {
+            bio: "القديس مرقس الرسول مؤسس الكنيسة القبطية والكارز الأول بمصر. وُلد في القيروان بليبيا لأبوين يهوديين من سبط لاوي، وكان أحد السبعين رسولاً الذين اختارهم السيد المسيح. جاء إلى الإسكندرية نحو عام ٦١م وكرز بالإنجيل وأسس الكنيسة القبطية. ولقّبته الكنيسة بـ«ناظر الإله» لأنه رأى المسيح وعاش معه. استشهد في شوارع الإسكندرية عام ٦٨م.",
+            achievements: ["تأسيس الكنيسة القبطية في الإسكندرية نحو عام ٦١م", "كتابة الإنجيل الثاني (إنجيل مرقس) في العهد الجديد", "وضع قداس القديس مرقس الرسولي الذي دُوِّن لاحقاً باسم القداس الكيرلسي", "الكرازة في مصر وأفريقيا ونال إكليل الشهادة عام ٦٨م"],
+            quote: "«ناظر الإله» — لقبه في الكنيسة القبطية",
+            source: "المصدر: موقع الأنبا تكلاهيمانوت — st-takla.org | موقع جريدة الوطن"
+        },
+        12: {
+            bio: "البابا ديمتريوس الأول الكرّام، البطريرك الثاني عشر (١٨٨–٢٣٠م). كان رجلاً بسيطاً يعمل في الزراعة، واختاره البابا يوليانوس الحادي عشر بطريركاً بناءً على رؤيا إلهية. أقام مع زوجته سبعاً وأربعين سنة قبل اختياره ولم يعرف أحدهما الآخر معرفة الأزواج. بعد توليه البطريركية تعلم القراءة والكتابة ودرس كتب الكنيسة. وضع قواعد حساب الأبقطي لتحديد مواعيد الأصوام والأعياد. بلغ من العمر مائة وخمس سنين.",
+            achievements: ["أول بطريرك مصري الأصل في الكنيسة القبطية", "وضع قواعد حساب الأبقطي لتحديد مواعيد الأصوام والأعياد المسيحية", "ضم الأربعين المقدسة إلى أسبوع الآلام وكتب بذلك إلى بطاركة العالم", "تنظيم الكنيسة جغرافياً وتعيين أسقفيات"],
+            quote: "«إن الذي سيأتيك بعنقود عنب سيخلفك» — الرؤيا التي أشارت إليه",
+            source: "المصدر: موقع الأنبا تكلاهيمانوت — st-takla.org | مشروع الكنوز القبطية — coptic-treasures.com"
+        },
+        20: {
+            bio: "البابا أثناسيوس الأول الرسولي، البطريرك العشرون (٣٢٨–٣٧٣م). لُقِّب بـ«حامي الإيمان» و«الرسولي». تولّى الكرسي وهو في حوالي الثلاثين من عمره. دافع بكل قوة عن لاهوت المسيح ضد هرطقة آريوس وشارك في مجمع نيقية وهو لا يزال شماساً مع البابا ألكسندروس. نُفي عن كرسيه خمس مرات بأوامر أباطرة مختلفين لكنه لم يتزعزع في إيمانه. أسس كنيسة أثيوبيا بسيامته فرمنتيوس أسقفاً عليها.",
+            achievements: ["الدفاع عن لاهوت المسيح ضد هرطقة آريوس في مجمع نيقية ٣٢٥م", "نُفي خمس مرات عن كرسيه ولم يتخلَّ عن الإيمان الأرثوذكسي", "تأسيس كنيسة أثيوبيا بسيامة الأنبا سلامة (فرمنتيوس) أسقفاً عليها", "كتاباته اللاهوتية الخالدة في الدفاع عن الإيمان"],
+            quote: "«أثناسيوس ضد العالم — والعالم ضد أثناسيوس»",
+            source: "المصدر: موقع الأنبا تكلاهيمانوت — st-takla.org | موقع صوت المسيحي الحر"
+        },
+        24: {
+            bio: "البابا كيرلس الأول، البطريرك الرابع والعشرون (٤١٢–٤٤٤م). لُقِّب بـ«عمود الدين وميزان الإيمان». ترأس المجمع المسكوني الثالث في أفسس عام ٤٣١م وأكد لقب «والدة الإله» للعذراء مريم رداً على هرطقة نسطور. وهو أول من دوّن قداس مار مرقس كتابةً وأضاف إليه بعض الصلوات فعُرف منذئذٍ بالقداس الكيرلسي.",
+            achievements: ["رئاسة مجمع أفسس المسكوني الثالث ٤٣١م", "تأكيد لقب «والدة الإله» (ثيوتوكوس) للعذراء مريم", "تدوين قداس القديس مرقس كتابةً فعُرف بالقداس الكيرلسي", "الرد على هرطقة نسطور وطرده من الكنيسة"],
+            quote: "«مريم هي والدة الإله حقاً وصدقاً»",
+            source: "المصدر: موقع الأنبا تكلاهيمانوت — st-takla.org | موقع الوطن — elwatannews.com"
+        },
+        107: {
+            bio: "البابا كيرلس الرابع «أبو الإصلاح»، البطريرك المائة والسابع (١٨٥٤–١٨٦١م). وُلد في قرية الصوامعة الشرقية بأخميم عام ١٨١٥م. يُعدّ أبرز المصلحين في تاريخ الكنيسة القبطية الحديثة. أنشأ المدرسة القبطية الكبرى بالبطريركية وفتح مدارس أخرى للجميع مجاناً، وكانت المدارس تُدرّس العربية والقبطية والإنجليزية والفرنسية والتركية. وهو أول مصري يؤسس مدارس أهلية لتعليم البنات في مصر الحديثة. كما اشترى مطبعة كبيرة هي الثانية في مصر بعد المطبعة الأميرية.",
+            achievements: ["أول مصري يؤسس مدارس أهلية مجانية لتعليم البنات في مصر الحديثة", "اشتراء المطبعة الثانية في مصر وطباعة الكتب الدينية والثقافية", "تأسيس المدرسة القبطية الكبرى وتعليم اللغات الحديثة والعلوم", "إصلاح المنظومة الكنسية التعليمية والليتورجية"],
+            quote: "«التعليم سلاح الكنيسة في كل زمان»",
+            source: "المصدر: موقع الأنبا تكلاهيمانوت — st-takla.org | جريدة اليوم السابع — youm7.com"
+        },
+        113: {
+            bio: "البابا القديس كيرلس السادس، البطريرك المائة والثالث عشر (١٩٥٩–١٩٧١م). رُسم بابا في ١٠ مايو ١٩٥٩م. راهب متعبد وزاهد عُرف بحياة الصلاة والنسك. في عهده دُشِّنت الكاتدرائية المرقسية الكبرى بالعباسية عام ١٩٦٨م بحضور الرئيس جمال عبد الناصر وإمبراطور أثيوبيا هيلاسيلاسي. وفي ٢٥ يونيو ١٩٦٨م استقبل رفات القديس مار مرقس الرسول العائدة من الفاتيكان بعد غياب أحد عشر قرناً.",
+            achievements: ["تدشين الكاتدرائية المرقسية الكبرى بالعباسية ١٩٦٨م", "استقبال رفات القديس مار مرقس الرسول من الفاتيكان عام ١٩٦٨م", "رسامة أول بطريرك جاثليق مستقل لأثيوبيا عام ١٩٥٩م", "بناء دير القديس مارمينا العجايبي بمريوط"],
+            quote: "«الصلاة هي أنفاس القلب»",
+            source: "المصدر: موقع الأنبا تكلاهيمانوت — st-takla.org | موقع مصراوي — masrawy.com | جريدة الدستور"
+        },
+        114: {
+            bio: "البابا شنودة الثالث، البطريرك المائة والرابع عشر (١٩٧١–٢٠١٢م). وُلد نظير جيد روفائيل في ٣ أغسطس ١٩٢٣م بأسيوط. حصل على ليسانس التاريخ بامتياز، وعمل مدرساً للغة العربية والإنجليزية. في سبتمبر ١٩٨١م نفاه الرئيس أنور السادات إلى دير وادي النطرون حيث مكث حتى ١٩٨٥م. ألّف قرابة ١٥٠ كتاباً في اللاهوت والشعر والتفسير. نال ٩ شهادات دكتوراه فخرية من جامعات أمريكية وأوروبية. لُقِّب بـ«بابا العرب» لمواقفه الوطنية.",
+            achievements: ["توسيع الكنيسة القبطية عالمياً وتأسيس أسقفيات المهجر", "تأليف قرابة ١٥٠ كتاباً في اللاهوت والشعر والتفسير الكتابي", "أول بابا يُنشئ أديرة قبطية خارج مصر ويُعيد تعمير الأديرة المتهالكة", "نال ٩ شهادات دكتوراه فخرية من جامعات أمريكية وأوروبية"],
+            quote: "«أنا لا أملك شيئاً — وكل شيء عندي أكثر من كافٍ»",
+            source: "المصدر: موقع هيئة الاستعلامات المصرية — sis.gov.eg | موقع الجزيرة نت — aljazeera.net"
+        },
+        115: {
+            bio: "البابا تواضروس الثاني، البطريرك المائة والثامن عشر (٢٠١٢م–حتى الآن). وُلد وجيه صبحي باقي سليمان في ٤ نوفمبر ١٩٥٢م بالمنصورة. درس الصيدلة وتخرج منها. اختِير بالقرعة الهيكلية في ٤ نوفمبر ٢٠١٢م ليكون البطريرك ١١٨ للكنيسة القبطية. ألّف أكثر من ٣٠ كتاباً في الروحانيات والتعليم الديني. أسس اللجنة البابوية للدراسات العليا عام ٢٠٢٠م وأطلق قناة COC الرقمية.",
+            achievements: ["قيادة الكنيسة القبطية في مرحلة ما بعد الثورة وتعزيز الوحدة الوطنية", "تأسيس اللجنة البابوية للدراسات العليا وتطوير معهد الدراسات القبطية ٢٠٢٠م", "تأليف أكثر من ٣٠ كتاباً في الروحانيات والتعليم الديني", "الاحتفال باليوبيل الذهبي للكاتدرائية المرقسية واستكمال تشطيباتها ٢٠١٨م"],
+            quote: "«الكنيسة بيت لكل أبنائها»",
+            source: "المصدر: موقع الأنبا تكلاهيمانوت — st-takla.org | موقع صوت المسيحي الحر — light-dark.net"
+        }
+    };
+
+    const BATCH_SIZE = 20;
+    let allPopes = [...POPES_DATA];
+    let displayedCount = 0;
+    let currentFilter = 'all';
+
+    function getEraLabel(century) {
+        if (century === 1) return 'القرن الأول';
+        if (century <= 5) return `القرن ${toArabicNumerals(century)}`;
+        if (century <= 10) return `القرن ${toArabicNumerals(century)}`;
+        return `القرن ${toArabicNumerals(century)}`;
+    }
+
+    function toArabicNumerals(n) {
+        const map = {'0':'٠','1':'١','2':'٢','3':'٣','4':'٤','5':'٥','6':'٦','7':'٧','8':'٨','9':'٩'};
+        return String(n).replace(/[0-9]/g, d => map[d]);
+    }
+
+    function getFilteredPopes() {
+        if (currentFilter === 'all') return allPopes;
+        const ranges = {
+            '1': c => c === 1,
+            '2-5': c => c >= 2 && c <= 5,
+            '6-10': c => c >= 6 && c <= 10,
+            '11-15': c => c >= 11 && c <= 15,
+            '16-20': c => c >= 16 && c <= 20,
+        };
+        return allPopes.filter(p => ranges[currentFilter](p[4]));
+    }
+
+    function createPopeCard(pope) {
+        const [num, name, enthrone, death, era] = pope;
+        const hasDetails = POPE_DETAILS[num];
+        const isActive = death === "الآن";
+
+        const card = document.createElement('div');
+        card.className = 'timeline-item';
+        card.setAttribute('data-pope', num);
+        card.setAttribute('data-era', era);
+
+        const side = num % 2 === 0 ? 'right' : 'left';
+        card.classList.add(`timeline-${side}`);
+
+        card.innerHTML = `
+            <div class="timeline-node" title="${name}">
+                <span class="pope-num">${toArabicNumerals(num)}</span>
+            </div>
+            <div class="timeline-card ${isActive ? 'pope-active' : ''}" onclick="openPopeModal(${num})">
+                <div class="pope-card-inner">
+                    <div class="pope-number-badge">${toArabicNumerals(num)}</div>
+                    <h3 class="pope-name">${name}</h3>
+                    <div class="pope-dates">
+                        <span class="pope-date-item"><i class="fas fa-crown"></i> ${enthrone}</span>
+                        <span class="pope-date-item"><i class="fas fa-cross"></i> ${death}</span>
+                    </div>
+                    <span class="pope-era-tag">${getEraLabel(era)}</span>
+                    ${hasDetails ? '<span class="pope-detail-hint"><i class="fas fa-book-open"></i> تفاصيل</span>' : ''}
+                </div>
+                <div class="pope-hover-overlay">
+                    <div class="hover-cross">✝</div>
+                    <p class="hover-name">${name}</p>
+                    <p class="hover-num">البابا رقم ${toArabicNumerals(num)}</p>
+                    ${hasDetails ? `<p class="hover-quote">${POPE_DETAILS[num].quote}</p>` : ''}
+                    <p class="hover-cta">انقر للتفاصيل الكاملة</p>
+                </div>
+            </div>
+        `;
+        return card;
+    }
+
+    function renderPopes(reset = false) {
+        const container = document.getElementById('timeline-items');
+        if (reset) {
+            container.innerHTML = '';
+            displayedCount = 0;
+        }
+        const filtered = getFilteredPopes();
+        const batch = filtered.slice(displayedCount, displayedCount + BATCH_SIZE);
+        batch.forEach((pope, idx) => {
+            const card = createPopeCard(pope);
+            card.style.animationDelay = `${idx * 60}ms`;
+            container.appendChild(card);
+        });
+        displayedCount += batch.length;
+
+        const loadMoreWrap = document.getElementById('load-more-wrap');
+        loadMoreWrap.style.display = displayedCount < filtered.length ? 'flex' : 'none';
+    }
+
+    function loadMorePopes() {
+        renderPopes(false);
+    }
+
+    function initPopes() {
+        document.getElementById('popes-loading').style.display = 'none';
+        document.getElementById('timeline-container').style.display = 'block';
+        renderPopes(true);
+    }
+
+    // Filter buttons
+    document.querySelectorAll('.filter-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+            document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            currentFilter = btn.dataset.era;
+            renderPopes(true);
+        });
+    });
+
+    // Search
+    function searchPope(e) {
+        if (e) e.preventDefault();
+        const q = document.getElementById('popeSearch').value.trim();
+        if (!q) return;
+        const found = allPopes.find(p => p[1].includes(q) || String(p[0]) === q);
+        if (found) {
+            currentFilter = 'all';
+            document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+            document.querySelector('[data-era="all"]').classList.add('active');
+            document.getElementById('timeline-items').innerHTML = '';
+            displayedCount = 0;
+            // Show all then scroll
+            while (displayedCount < allPopes.length) renderPopes(false);
+            setTimeout(() => {
+                const el = document.querySelector(`[data-pope="${found[0]}"]`);
+                if (el) {
+                    el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                    el.classList.add('pope-highlight');
+                    setTimeout(() => el.classList.remove('pope-highlight'), 3000);
+                }
+            }, 300);
+        } else {
+            alert('لم يتم العثور على هذا البطريرك. جرب اسماً مختلفاً.');
+        }
+    }
+
+    document.getElementById('popeSearch').addEventListener('keydown', e => {
+        if (e.key === 'Enter') searchPope(null);
+    });
+
+    // Modal
+    function openPopeModal(num) {
+        const pope = allPopes.find(p => p[0] === num);
+        if (!pope) return;
+        const [n, name, enthrone, death, era] = pope;
+        const details = POPE_DETAILS[num];
+        const modal = document.getElementById('pope-modal');
+        const content = document.getElementById('pope-modal-content');
+
+        content.innerHTML = `
+            <div class="modal-pope-header">
+                <div class="modal-cross-bg">✝</div>
+                <span class="modal-pope-num">${toArabicNumerals(n)}</span>
+                <h2 class="modal-pope-name">${name}</h2>
+                <div class="modal-dates">
+                    <span><i class="fas fa-crown"></i> تولى الكرسي: ${enthrone}</span>
+                    <span><i class="fas fa-cross"></i> الانتقال: ${death}</span>
+                </div>
+            </div>
+            <div class="modal-body-content">
+                ${details ? `
+                    <div class="modal-section">
+                        <h4><i class="fas fa-scroll"></i> السيرة المختصرة</h4>
+                        <p>${details.bio}</p>
+                    </div>
+                    <div class="modal-section">
+                        <h4><i class="fas fa-star"></i> أبرز إنجازاته</h4>
+                        <ul class="modal-achievements">
+                            ${details.achievements.map(a => `<li><i class="fas fa-check-circle"></i> ${a}</li>`).join('')}
+                        </ul>
+                    </div>
+                    <div class="modal-section modal-quote-section">
+                        <i class="fas fa-quote-right quote-icon"></i>
+                        <blockquote>${details.quote}</blockquote>
+                    </div>
+                    <div class="modal-section modal-source-section">
+                        <p class="modal-source-text"><i class="fas fa-link"></i> ${details.source}</p>
+                    </div>
+                ` : `
+                    <div class="modal-section">
+                        <p class="modal-no-details">
+                            <i class="fas fa-book"></i>
+                            تُعدّ المعلومات التفصيلية عن هذا البطريرك من التراث المحفوظ في المخطوطات القبطية القديمة.
+                            <br><br>
+                            <strong>تولى الكرسي:</strong> ${enthrone} &nbsp;|&nbsp; <strong>الانتقال:</strong> ${death}
+                            <br>
+                            <strong>الحقبة:</strong> ${getEraLabel(era)}
+                        </p>
+                    </div>
+                `}
+            </div>
+        `;
+
+        modal.classList.add('active');
+        document.body.style.overflow = 'hidden';
+    }
+
+    function closePoperModal() {
+        document.getElementById('pope-modal').classList.remove('active');
+        document.body.style.overflow = '';
+    }
+
+    function closeModal(e) {
+        if (e.target === document.getElementById('pope-modal')) closePoperModal();
+    }
+
+    document.addEventListener('keydown', e => {
+        if (e.key === 'Escape') closePoperModal();
+    });
+
+    // Init on load
+    window.addEventListener('DOMContentLoaded', () => {
+        setTimeout(initPopes, 600);
+    });
+    </script>
+
+</body>
+</html>
