@@ -895,34 +895,180 @@ body {
 .pope-modal-box::-webkit-scrollbar-thumb { background: var(--gold); border-radius: 3px; }
 
 /* ══════════════════════════════════════════
-   RESPONSIVE TIMELINE
+   RESPONSIVE — TABLET (max 1024px)
+══════════════════════════════════════════ */
+@media (max-width: 1024px) {
+    /* Timeline: narrow the cards a bit */
+    .timeline-container {
+        max-width: 900px;
+        padding: 0 1.2rem 2rem;
+    }
+
+    .timeline-left  { padding-left:  calc(50% + 22px); }
+    .timeline-right { padding-right: calc(50% + 22px); }
+
+    .timeline-card { max-width: 340px; }
+
+    /* Filter bar wrap nicely */
+    .filter-inner {
+        flex-wrap: wrap;
+        gap: 0.4rem;
+        padding: 0.5rem 1rem;
+    }
+
+    /* Section header */
+    .popes-section-title { font-size: 2.2rem; }
+}
+
+/* ══════════════════════════════════════════
+   RESPONSIVE — MOBILE & SMALL TABLET (max 768px)
 ══════════════════════════════════════════ */
 @media (max-width: 768px) {
+
+    /* ── Hero ── */
+    #intro {
+        flex-direction: column;
+        height: auto;
+        min-height: 100vh;
+    }
+    .hero-img {
+        width: 100%;
+        height: 50vh;
+    }
+    #typewriter, .cursor { font-size: 1.35rem; }
+
+    /* ── Section header ── */
+    .popes-section { padding: 1.5rem 0 3rem; }
+    .popes-section-title { font-size: 1.7rem; }
+    .popes-section-desc  { font-size: 0.9rem; }
+
+    /* ── Filter bar: stack into two rows ── */
+    .filter-bar { padding: 0 0.75rem; margin-bottom: 2rem; }
+    .filter-inner {
+        flex-wrap: wrap;
+        gap: 0.35rem;
+        border-radius: 16px;
+        padding: 0.6rem 0.8rem;
+        justify-content: center;
+    }
+    .filter-label { width: 100%; text-align: center; margin-bottom: 0.2rem; }
+    .filter-btn   { font-size: 0.78rem; padding: 4px 10px; }
+
+    /* ── Timeline: single column on the right ── */
+    .timeline-container {
+        padding: 0 1rem 2rem;
+    }
     .timeline-spine {
         left: 20px;
         transform: none;
     }
-
     .timeline-item {
         flex-direction: row !important;
         justify-content: flex-start !important;
-        padding-left: 60px !important;
-        padding-right: 0 !important;
+        padding-left: 56px !important;
+        padding-right: 0.5rem !important;
+        margin-bottom: 1.2rem;
     }
-
     .timeline-node {
         left: 20px;
         transform: translateX(-50%);
+        width: 30px;
+        height: 30px;
     }
+    .pope-num { font-size: 0.6rem; }
 
-    .timeline-card { max-width: 100%; }
+    .timeline-card {
+        max-width: 100%;
+        padding: 0.75rem 0.9rem;
+    }
+    .pope-name      { font-size: 0.95rem; }
+    .pope-date-item { font-size: 0.75rem; }
+    .pope-era-tag   { font-size: 0.68rem; }
 
-    .modal-body-content { padding: 1rem 1.2rem 1.5rem; }
-    .modal-pope-header { padding: 2rem 1.2rem 1.4rem; }
-    .modal-pope-name { font-size: 1.35rem; }
+    /* ── Modal ── */
+    .pope-modal-backdrop { padding: 0.75rem; }
+    .pope-modal-box {
+        max-height: 92vh;
+        border-radius: 12px;
+    }
+    .modal-pope-header  { padding: 1.8rem 1rem 1.2rem; }
+    .modal-pope-name    { font-size: 1.25rem; }
+    .modal-body-content { padding: 1rem 1rem 1.5rem; }
+    .modal-dates        { gap: 0.75rem; }
+    .modal-dates span   { font-size: 0.78rem; }
+    .modal-section h4   { font-size: 0.88rem; }
+    .modal-section p,
+    .modal-achievements li { font-size: 0.85rem; }
+    .modal-quote-section blockquote { font-size: 0.88rem; }
+    .modal-source-text  { font-size: 0.75rem; }
+
+    /* ── Navbar search ── */
+    .navbar-search-wrapper { margin: 0.75rem 0 0.5rem; }
+    .navbar-search-input {
+        background: var(--cream);
+        color: var(--ink);
+        width: 100%;
+        max-width: 320px;
+    }
+    .navbar-search-input::placeholder { color: var(--muted); }
+    .search-icon { color: var(--gold-dark); }
 }
 
+/* ══════════════════════════════════════════
+   RESPONSIVE — SMALL PHONE (max 480px)
+══════════════════════════════════════════ */
 @media (max-width: 480px) {
-    .filter-inner { gap: 0.35rem; }
-    .filter-btn { padding: 3px 10px; font-size: 0.8rem; }
+
+    /* Hero text smaller */
+    #typewriter, .cursor { font-size: 1.05rem; }
+
+    /* Navbar brand smaller */
+    .navbar-brand { font-size: 1.15rem; letter-spacing: 0.5px; }
+
+    /* Section header */
+    .popes-section-title { font-size: 1.45rem; }
+
+    /* Filter: even more compact */
+    .filter-btn { font-size: 0.72rem; padding: 3px 8px; }
+
+    /* Timeline spine closer to edge */
+    .timeline-spine { left: 14px; }
+    .timeline-item {
+        padding-left: 46px !important;
+        padding-right: 0.25rem !important;
+    }
+    .timeline-node {
+        left: 14px;
+        width: 26px;
+        height: 26px;
+    }
+    .pope-num { font-size: 0.55rem; }
+
+    /* Cards very compact */
+    .timeline-card { padding: 0.65rem 0.75rem; border-radius: 10px; }
+    .pope-name      { font-size: 0.88rem; }
+    .pope-dates     { gap: 0.5rem; }
+    .pope-date-item { font-size: 0.7rem; }
+
+    /* Modal full-screen feel */
+    .pope-modal-backdrop { padding: 0.5rem; align-items: flex-end; }
+    .pope-modal-box {
+        max-height: 95vh;
+        border-radius: 16px 16px 0 0;
+    }
+    .modal-pope-name { font-size: 1.1rem; }
+    .modal-cross-bg  { font-size: 5rem; }
+
+    /* Load more button */
+    .load-more-btn { font-size: 0.85rem; padding: 0.6rem 1.6rem; }
+}
+
+/* ══════════════════════════════════════════
+   RESPONSIVE — VERY SMALL (max 360px)
+══════════════════════════════════════════ */
+@media (max-width: 360px) {
+    #typewriter, .cursor { font-size: 0.9rem; }
+    .popes-section-title { font-size: 1.25rem; }
+    .filter-btn { font-size: 0.68rem; padding: 2px 7px; }
+    .pope-name  { font-size: 0.82rem; }
 }
